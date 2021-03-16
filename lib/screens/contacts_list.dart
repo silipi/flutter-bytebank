@@ -1,4 +1,4 @@
-import 'package:alura_bytebank_sqflite/database/app_database.dart';
+import 'package:alura_bytebank_sqflite/dao/contact_dao.dart';
 import 'package:alura_bytebank_sqflite/models/contact.dart';
 import 'package:alura_bytebank_sqflite/screens/contact_form.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +9,9 @@ class ContactList extends StatefulWidget {
 }
 
 class _ContactListState extends State<ContactList> {
+  
+  final ContactDao _dao = ContactDao();
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +54,7 @@ class _ContactListState extends State<ContactList> {
           }
           return Text("Unknown error.");
         },
-        future: Future.delayed(Duration(seconds: 1)).then((value) => findAll()),
+        future: Future.delayed(Duration(seconds: 1)).then((value) => _dao.findAll()),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
